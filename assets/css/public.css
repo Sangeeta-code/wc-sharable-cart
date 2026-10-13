@@ -1,0 +1,685 @@
+/*
+ * WC Share Cart – frontend styles.
+ * Everything is scoped under the .wcsc- prefix. No global typography or colour is applied:
+ * the active theme's font family is inherited.
+ */
+
+.wcsc-share-wrap {
+	margin: 12px 0;
+}
+
+.wcsc-share-btn {
+	--wcsc-btn-bg: #2563eb;
+	--wcsc-btn-color: #fff;
+	--wcsc-btn-radius: 6px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 10px 20px;
+	border: 2px solid transparent;
+	border-radius: var(--wcsc-btn-radius);
+	background: var(--wcsc-btn-bg);
+	color: var(--wcsc-btn-color);
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+	transition: filter .15s ease, box-shadow .15s ease;
+}
+
+.wcsc-share-btn:hover {
+	filter: brightness(.92);
+	color: var(--wcsc-btn-color);
+}
+
+.wcsc-share-btn:focus-visible,
+.wcsc-btn:focus-visible,
+.wcsc-modal__close:focus-visible,
+.wcsc-link-input:focus-visible,
+.wcsc-link-button:focus-visible,
+.wcsc-modal:focus-visible,
+.wcsc-mode input:focus-visible {
+	outline: 3px solid #111;
+	outline-offset: 2px;
+	box-shadow: 0 0 0 5px rgba(255, 255, 255, .9);
+}
+
+.wcsc-share-wrap--block .wcsc-share-btn {
+	width: 100%;
+}
+
+.wcsc-icon {
+	flex: none;
+}
+
+/* ------------------------------------------------------------------ modal */
+
+html.wcsc-modal-open {
+	overflow: hidden;
+}
+
+.wcsc-modal-overlay[hidden] {
+	display: none;
+}
+
+.wcsc-modal-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	background: rgba(15, 23, 42, .55);
+	box-sizing: border-box;
+}
+
+.wcsc-modal-overlay *,
+.wcsc-modal-overlay *::before,
+.wcsc-modal-overlay *::after {
+	box-sizing: border-box;
+}
+
+.wcsc-modal {
+	position: relative;
+	width: 100%;
+	max-width: 500px;
+	max-height: calc(100vh - 32px);
+	max-height: calc(100dvh - 32px);
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 28px 24px 20px;
+	border-radius: 16px;
+	background: #fff;
+	color: #1f2937;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.wcsc-modal__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: #4b5563;
+	cursor: pointer;
+}
+
+.wcsc-modal__close:hover {
+	background: #f3f4f6;
+	color: #111827;
+}
+
+.wcsc-modal__title {
+	margin: 0 44px 6px 0;
+	padding: 0;
+	font-size: 1.4em;
+	line-height: 1.25;
+	color: inherit;
+}
+
+.wcsc-modal__desc {
+	margin: 0 0 18px;
+	color: #4b5563;
+}
+
+.wcsc-modal__status {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 16px 0;
+	color: #4b5563;
+}
+
+.wcsc-modal__status[hidden],
+.wcsc-modal__error[hidden],
+.wcsc-modal__unsupported[hidden],
+.wcsc-modal__body[hidden],
+.wcsc-excluded[hidden],
+.wcsc-qr[hidden] {
+	display: none;
+}
+
+.wcsc-spinner {
+	width: 18px;
+	height: 18px;
+	border: 3px solid #d1d5db;
+	border-top-color: #2563eb;
+	border-radius: 50%;
+	animation: wcsc-spin .8s linear infinite;
+}
+
+@keyframes wcsc-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wcsc-spinner {
+		animation-duration: 2.4s;
+	}
+
+	.wcsc-share-btn {
+		transition: none;
+	}
+}
+
+.wcsc-modal__error {
+	margin: 0 0 14px;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #fca5a5;
+	background: #fef2f2;
+	color: #991b1b;
+}
+
+.wcsc-modal__unsupported {
+	margin: 0 0 14px;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #fcd34d;
+	background: #fffbeb;
+	color: #78350f;
+}
+
+.wcsc-modal__unsupported p {
+	margin: 0 0 6px;
+}
+
+.wcsc-modal__unsupported ul {
+	margin: 0 0 12px 1.2em;
+	padding: 0;
+}
+
+.wcsc-excluded {
+	margin: 0 0 12px;
+	padding: 10px 12px;
+	border-radius: 8px;
+	background: #fffbeb;
+	color: #78350f;
+	font-size: .9em;
+}
+
+.wcsc-excluded p {
+	margin: 0;
+}
+
+.wcsc-label {
+	display: block;
+	margin: 0 0 6px;
+	font-size: .85em;
+	font-weight: 600;
+	color: #374151;
+}
+
+.wcsc-link-row {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 14px;
+}
+
+.wcsc-link-input {
+	flex: 1 1 auto;
+	min-width: 0;
+	width: 100%;
+	min-height: 44px;
+	padding: 8px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	background: #f9fafb;
+	color: #111827;
+	font: inherit;
+	font-size: .9em;
+	text-overflow: ellipsis;
+}
+
+.wcsc-share-actions {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.wcsc-share-actions:empty {
+	display: none;
+}
+
+.wcsc-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 10px 16px;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: filter .15s ease;
+}
+
+.wcsc-btn:hover {
+	filter: brightness(.94);
+}
+
+.wcsc-btn--primary {
+	background: #2563eb;
+	color: #fff;
+}
+
+.wcsc-btn--primary:hover {
+	color: #fff;
+}
+
+.wcsc-btn--secondary {
+	background: #fff;
+	border-color: #d1d5db;
+	color: #1f2937;
+}
+
+.wcsc-btn--secondary:hover {
+	color: #1f2937;
+}
+
+.wcsc-btn--whatsapp {
+	background: #128c4a;
+	color: #fff;
+}
+
+.wcsc-btn--whatsapp:hover {
+	color: #fff;
+}
+
+.wcsc-btn--email {
+	background: #374151;
+	color: #fff;
+}
+
+.wcsc-btn--email:hover {
+	color: #fff;
+}
+
+.wcsc-btn--copy {
+	flex: none;
+	min-width: 132px;
+}
+
+.wcsc-qr {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 14px;
+	padding: 14px;
+	border: 1px dashed #d1d5db;
+	border-radius: 12px;
+}
+
+.wcsc-qr__canvas {
+	display: block;
+	width: 180px;
+	height: 180px;
+	max-width: 100%;
+	background: #fff;
+	image-rendering: pixelated;
+}
+
+.wcsc-expiry {
+	margin: 0 0 8px;
+	font-size: .85em;
+	color: #6b7280;
+	overflow-wrap: anywhere;
+}
+
+.wcsc-link-button {
+	display: inline-block;
+	margin: 0 0 8px;
+	padding: 6px 0;
+	border: 0;
+	background: none;
+	color: #b91c1c;
+	font: inherit;
+	font-size: .85em;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.wcsc-modal__footer {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 8px;
+	padding-top: 12px;
+	border-top: 1px solid #e5e7eb;
+}
+
+.wcsc-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (max-width: 520px) {
+	.wcsc-modal-overlay {
+		align-items: flex-end;
+		padding: 8px;
+	}
+
+	.wcsc-modal {
+		padding: 24px 16px 16px;
+		border-radius: 16px;
+	}
+
+	.wcsc-link-row {
+		flex-direction: column;
+	}
+
+	.wcsc-btn--copy,
+	.wcsc-modal__footer .wcsc-btn,
+	.wcsc-modal__unsupported .wcsc-btn {
+		width: 100%;
+	}
+
+	.wcsc-share-actions {
+		grid-template-columns: 1fr;
+	}
+
+	.wcsc-share-wrap .wcsc-share-btn {
+		width: 100%;
+	}
+}
+
+/* ------------------------------------------------------------------ recipient preview page */
+
+.wcsc-preview {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 860px;
+	margin: 32px auto;
+	padding: 0 16px;
+	font-family: inherit;
+}
+
+.wcsc-preview *,
+.wcsc-preview *::before,
+.wcsc-preview *::after {
+	box-sizing: border-box;
+}
+
+.wcsc-preview__title {
+	margin: 0 0 8px;
+	font-size: 1.8em;
+	line-height: 1.2;
+}
+
+.wcsc-preview__desc {
+	margin: 0 0 6px;
+	font-size: 1.05em;
+}
+
+.wcsc-preview__expiry {
+	margin: 0 0 20px;
+	font-size: .9em;
+	opacity: .75;
+}
+
+.wcsc-preview__message {
+	padding: 32px 20px;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	text-align: center;
+}
+
+.wcsc-preview__message .wcsc-btn {
+	margin-top: 12px;
+}
+
+.wcsc-preview__warning {
+	margin: 0 0 16px;
+	padding: 12px 14px;
+	border-radius: 8px;
+	background: #fffbeb;
+	border: 1px solid #fcd34d;
+	color: #78350f;
+}
+
+.wcsc-items {
+	margin: 0 0 16px;
+	padding: 0;
+	list-style: none;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.wcsc-item {
+	display: grid;
+	grid-template-columns: 72px minmax(0, 1fr) 56px 96px 104px;
+	gap: 12px;
+	align-items: center;
+	margin: 0;
+	padding: 14px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.wcsc-item:last-child {
+	border-bottom: 0;
+}
+
+.wcsc-item--unavailable {
+	background: #fafafa;
+}
+
+.wcsc-item--unavailable .wcsc-item__image {
+	opacity: .5;
+}
+
+.wcsc-item__image img {
+	display: block;
+	width: 72px;
+	height: 72px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.wcsc-item__details {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.wcsc-item__name,
+.wcsc-item__meta,
+.wcsc-item__status {
+	display: block;
+}
+
+.wcsc-item__meta {
+	font-size: .88em;
+	opacity: .75;
+}
+
+.wcsc-item__status {
+	margin-top: 4px;
+	font-size: .82em;
+	font-weight: 600;
+	color: #166534;
+}
+
+.wcsc-item__status--out_of_stock,
+.wcsc-item__status--insufficient_stock,
+.wcsc-item__status--unavailable {
+	color: #b91c1c;
+}
+
+.wcsc-item__label {
+	display: none;
+}
+
+.wcsc-item__subtotal {
+	font-weight: 600;
+	text-align: right;
+}
+
+.wcsc-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	padding: 14px;
+	border-radius: 12px;
+	background: #f3f4f6;
+	font-size: 1.1em;
+}
+
+.wcsc-total__note {
+	margin: 8px 0 20px;
+	font-size: .85em;
+	opacity: .75;
+}
+
+.wcsc-modes {
+	margin: 0 0 18px;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.wcsc-modes legend {
+	margin-bottom: 8px;
+	padding: 0;
+	font-weight: 600;
+}
+
+.wcsc-mode {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin-bottom: 8px;
+	padding: 12px 14px;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.wcsc-mode:has(input:checked) {
+	border-color: #2563eb;
+	background: #eff6ff;
+}
+
+.wcsc-mode input {
+	margin-top: 4px;
+}
+
+.wcsc-mode small {
+	display: block;
+	opacity: .75;
+}
+
+.wcsc-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+@media (max-width: 640px) {
+	.wcsc-item {
+		grid-template-columns: 64px minmax(0, 1fr);
+		row-gap: 6px;
+	}
+
+	.wcsc-item__image img {
+		width: 64px;
+		height: 64px;
+	}
+
+	.wcsc-item__qty,
+	.wcsc-item__price,
+	.wcsc-item__subtotal {
+		grid-column: 2;
+		display: flex;
+		justify-content: space-between;
+		text-align: left;
+	}
+
+	.wcsc-item__label {
+		display: inline;
+		opacity: .65;
+	}
+
+	.wcsc-actions .wcsc-btn {
+		width: 100%;
+	}
+}
+
+/* ------------------------------------------------------------------ My Account */
+
+.wcsc-status {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-size: .85em;
+	font-weight: 600;
+}
+
+.wcsc-status--active {
+	background: #dcfce7;
+	color: #166534;
+}
+
+.wcsc-status--expired {
+	background: #f3f4f6;
+	color: #4b5563;
+}
+
+.wcsc-status--revoked {
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+.wcsc-account__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.wcsc-account__clear,
+.wcsc-account__pagination {
+	margin-top: 16px;
+}
+
+.wcsc-account__items {
+	margin: 6px 0 0 1.2em;
+	padding: 0;
+}
+
+/* ------------------------------------------------------------------ shortcode button */
+.wcsc-share-wrap--full .wcsc-share-btn {
+	width: 100%;
+}
+
+.wcsc-share-btn--shortcode {
+	cursor: pointer;
+}

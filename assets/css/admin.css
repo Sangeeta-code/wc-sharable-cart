@@ -1,0 +1,97 @@
+/* WC Share Cart – admin styles (scoped to .wcsc-admin). */
+
+.wcsc-admin .wcsc-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 16px;
+	margin: 20px 0;
+}
+
+.wcsc-admin .wcsc-card {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+	background: #fff;
+}
+
+.wcsc-admin .wcsc-card__label {
+	color: #50575e;
+}
+
+.wcsc-admin .wcsc-card__value {
+	font-size: 26px;
+	line-height: 1.2;
+}
+
+.wcsc-admin .wcsc-card__note {
+	color: #787c82;
+	font-size: 12px;
+}
+
+.wcsc-admin .wcsc-top {
+	max-width: 640px;
+}
+
+.wcsc-admin .wcsc-details th {
+	width: 220px;
+}
+
+.wcsc-admin .wcsc-status {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-weight: 600;
+}
+
+.wcsc-admin .wcsc-status--active {
+	background: #dcfce7;
+	color: #166534;
+}
+
+.wcsc-admin .wcsc-status--expired {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.wcsc-admin .wcsc-status--revoked {
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+.wcsc-admin .wcsc-filters label {
+	margin: 0 4px 0 8px;
+}
+
+.wcsc-admin .column-actions {
+	width: 22%;
+}
+
+/* ------------------------------------------------------------------ shortcode help */
+.wcsc-help {
+	max-width: 900px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #2563eb;
+	padding: 4px 18px 12px;
+	margin: 8px 0 12px;
+}
+
+.wcsc-help h4 {
+	margin: 18px 0 8px;
+}
+
+.wcsc-help .wcsc-help-table code {
+	white-space: normal;
+}
+
+.wcsc-code {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	padding: 10px 12px;
+	overflow: auto;
+	margin: 6px 0;
+	font-size: 12px;
+}
